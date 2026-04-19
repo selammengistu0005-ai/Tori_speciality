@@ -133,10 +133,10 @@ h1::after {
 /* Dentin (Middle Left) - Now Angling UPWARD */
 .line-mid { 
     top: 50%;                    
-    width: 200px;                /* Slightly longer to cover the diagonal distance */
-    right: -200px;               /* Match width to keep it connected to the bubble edge */
+    width: 145px;                /* Reduced from 200px so it doesn't pierce the tooth */
+    right: -145px;               /* Matches width perfectly to fix the detachment */
     
-    /* Using a negative degree to pull the tip UP toward the crown */
+    /* -15deg is the "sweet spot" to hit the upper Dentin without breaking the connection */
     transform: translateY(-50%) rotate(-50deg); 
 }
 /* Root Line (Right Side - Pointing to Gums) */

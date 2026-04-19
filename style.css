@@ -138,7 +138,7 @@ h1::after {
     right: -140px;               
     
     /* Changed from -5deg (down) to 12deg (up) */
-    transform: translateY(-50%) rotate(12deg); 
+    transform: translateY(-50%) rotate(20deg); 
 }
 /* Root Line (Right Side - Pointing to Gums) */
 .line-low { 

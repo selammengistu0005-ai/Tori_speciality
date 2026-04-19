@@ -130,11 +130,17 @@ h1::after {
     right: -140px;               /* Matches width to stay attached to card */
     transform: translateY(-50%) rotate(8deg); /* Centered and angled toward the crown */
 }
-.line-mid { top: 25px; transform: rotate(-10deg); }
+/* Dentin (Middle Left) - Centered and Longer */
+.line-mid { 
+    top: 50%;                    /* Move starting point to vertical middle of bubble */
+    width: 140px;                /* Make it long enough to reach the inner tooth */
+    right: -140px;               /* Matches width to push it outside the card */
+    transform: translateY(-50%) rotate(-5deg); /* Slight downward angle to hit the yellow dentin */
+}
 /* Root Line (Right Side - Pointing to Gums) */
 .line-low { 
     top: 50%;                    /* Start at the middle of the bubble */
-    width: 130px;                /* Reach across to the tooth */
+    width: 120px;                /* Reach across to the tooth */
     left: -130px;                /* Anchor to the left side of the bubble */
     transform: translateY(-50%) rotate(175deg); /* Pointing slightly upward toward roots */
 }

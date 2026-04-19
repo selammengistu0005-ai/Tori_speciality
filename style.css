@@ -130,7 +130,8 @@ h1::after {
     right: -140px;               /* Matches width to stay attached to card */
     transform: translateY(-50%) rotate(8deg); /* Centered and angled toward the crown */
 }
-/* Dentin (Middle Left) - Centered and Longer */
+/* Dentin (Middle Left) - Now Angling UPWARD */
+.line-mid { 
     top: 50%;                    
     width: 160px;                /* Slightly longer to cover the diagonal distance */
     right: -160px;               /* Match width to keep it connected to the bubble edge */

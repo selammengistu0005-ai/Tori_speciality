@@ -25,7 +25,7 @@ themeToggle.addEventListener('click', () => {
 });
 
 const textElement = document.querySelector('.bubble-text');
-const message = "Modern dentistry, redefined for your comfort.";
+const message = "Tori ባለፉት 5 ዓመታት በአዲስ አበባ ከተማ ውስጥ ጥራት ያለው የጥርስ ሕክምና አገልግሎት በመስጠት ላይ ይገኛል.... በዚህ አጭር ጊዜ ውስጥ ከ 100,000 በላይ ታካሚዎችን በማከም የብዙዎችን ፈገግታ መመለስ ችሏል.... ማዕከላችን በዘመናዊ ቴክኖሎጂ የታገዘ ቀልጣፋ አገልግሎት በመስጠት የታካሚዎቹን እርካታ ማረጋገጥ ግቡ አድርጎ ይሰራል...";
 let index = 0;
 
 function typeWriter() {

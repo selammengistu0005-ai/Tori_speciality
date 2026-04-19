@@ -105,15 +105,19 @@ h1::after {
     margin-top: 120px; /* Adjust this number to move it further down */
 }
 
+/* 1. Base Line Style - Neon Glowing Blue */
 .line {
     position: absolute;
-    height: 3px;                 /* Increased thickness from 1px to 3px */
-    background: var(--gold-accent);
-    opacity: 0.9;                /* Increased opacity from 0.6 for better visibility */
-    width: 90px;
+    height: 3px;
+    background: #00f2ff; /* A bright, electric cyan/blue */
+    opacity: 1;          /* Full visibility for the glow */
     pointer-events: none;
     z-index: 5;
-    border-radius: 2px;          /* Optional: slight rounding for a cleaner look */
+    border-radius: 2px;
+    
+    /* The Glow Effect: This creates the "Neon" look */
+    box-shadow: 0 0 8px #00f2ff, 
+                0 0 15px rgba(0, 242, 255, 0.6);
 }
 
 .line-right { right: -90px; }

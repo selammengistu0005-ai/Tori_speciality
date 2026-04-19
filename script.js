@@ -12,15 +12,13 @@ if (currentTheme === 'dark') {
 
 // 4. Add the click event listener
 themeToggle.addEventListener('click', () => {
-    // Check if we are currently in dark mode
+    // 1. Toggle the 'data-theme' attribute on the body
     const isDark = body.getAttribute('data-theme') === 'dark';
-
+    
     if (isDark) {
-        // Switch to Light Mode
         body.removeAttribute('data-theme');
         localStorage.setItem('theme', 'light');
     } else {
-        // Switch to Dark Mode
         body.setAttribute('data-theme', 'dark');
         localStorage.setItem('theme', 'dark');
     }

@@ -3,15 +3,12 @@
     --bg-color: #ffffff;
     --text-color: #1a1a1a;
     --gold-accent: #d4af37;
-    /* This filter creates the 'Black Tooth' effect while keeping the real shading */
-    --tooth-filter: invert(1) brightness(0.2); 
-    --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 [data-theme="dark"] {
-    --bg-color: #121212;
+    --bg-color: #000000; /* Pure black for that professional look */
     --text-color: #f5f5f5;
-    --tooth-filter: brightness(1); /* Returns to original white photo */
 }
 
 body {
@@ -72,4 +69,39 @@ h1::after {
     background: var(--gold-accent);
     margin: 20px auto;
     transform: skewX(-20deg); /* Mimics the white slashes in your logo */
+}
+
+/* Styling the SVG icons */
+.icon-container {
+    position: relative;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold-accent); /* Makes both icons gold */
+}
+
+.moon-icon, .sun-icon {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+/* Light Mode: Show Moon, Hide Sun */
+.sun-icon {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0);
+}
+
+/* Dark Mode: Hide Moon, Show Sun */
+[data-theme="dark"] .moon-icon {
+    opacity: 0;
+    transform: rotate(90deg) scale(0);
+}
+
+[data-theme="dark"] .sun-icon {
+    opacity: 1;
+    transform: rotate(0) scale(1);
 }

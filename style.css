@@ -2,15 +2,17 @@
 :root {
     --bg-color: #ffffff;
     --text-color: #1a1a1a;
-    --gold-accent: #d4af37; /* Metallic Gold */
-    --tooth-color: #000000;
+    --gold-accent: #d4af37;
+    /* This filter makes the white tooth look black/charcoal */
+    --tooth-filter: brightness(0); 
     --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 [data-theme="dark"] {
     --bg-color: #121212;
     --text-color: #f5f5f5;
-    --tooth-color: #ffffff;
+    /* This restores the natural white look in dark mode */
+    --tooth-filter: brightness(1) drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
 }
 
 body {
@@ -18,7 +20,7 @@ body {
     padding: 0;
     background-color: var(--bg-color);
     color: var(--text-color);
-    font-family: 'Playfair Display', serif; /* Elegant font for luxury feel */
+    font-family: 'Playfair Display', serif;
     transition: var(--transition);
 }
 
@@ -28,25 +30,29 @@ body {
     top: 25px;
     right: 25px;
     background: transparent;
-    border: 2px solid var(--gold-accent); /* Gold border to match logo */
+    border: 2px solid var(--gold-accent);
     border-radius: 50%;
-    padding: 8px;
+    width: 60px; /* Increased size to show tooth detail */
+    height: 60px;
     cursor: pointer;
     z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: var(--transition);
+    overflow: hidden;
 }
 
 #theme-toggle:hover {
     box-shadow: 0 0 15px var(--gold-accent);
+    transform: scale(1.05);
 }
 
-.tooth-icon {
-    width: 32px;
-    height: 32px;
-    fill: var(--tooth-color);
+/* THE REAL TOOTH STYLING */
+.tooth-img {
+    width: 80%; /* Fits inside the circle */
+    height: auto;
+    filter: var(--tooth-filter);
     transition: var(--transition);
 }
 
@@ -66,7 +72,6 @@ main p {
     font-style: italic;
 }
 
-/* Gold slash decorative element to match your logo */
 h1::after {
     content: "";
     display: block;
@@ -74,5 +79,5 @@ h1::after {
     height: 4px;
     background: var(--gold-accent);
     margin: 20px auto;
-    transform: skewX(-20deg); /* Mimics the "white slashes" in your logo */
+    transform: skewX(-20deg);
 }

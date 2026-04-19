@@ -134,11 +134,11 @@ h1::after {
 /* Dentin (Middle Left) - Angled Upward to the Crown */
 .line-mid { 
     top: 50%;                    
-    width: 140px;                
-    right: -140px;               
+    width: 155px;                /* Slightly longer to reach the high mark */
+    right: -155px;               /* Match width to keep it connected to the frame */
     
-    /* Changed from -5deg (down) to 12deg (up) */
-    transform: translateY(-50%) rotate(120deg); 
+    /* Use 20deg to point UP. 120deg was the reason it detached! */
+    transform: translateY(-50%) rotate(20deg); 
 }
 /* Root Line (Right Side - Pointing to Gums) */
 .line-low { 

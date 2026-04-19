@@ -20,6 +20,54 @@ body {
     transition: var(--transition);
 }
 
+h1 {
+    color: var(--gold-accent);
+    text-align: center;
+    margin-top: 20vh;
+    font-size: 3rem;
+    text-transform: uppercase;
+}
+
+h1::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--gold-accent);
+    margin: 20px auto;
+    transform: skewX(-20deg);
+}
+
+.chat-bubble {
+    margin: 40px auto;
+    max-width: 400px;
+    padding: 20px 30px;
+    background: rgba(212, 175, 55, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1.5px solid var(--gold-accent);
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    animation: float 6s ease-in-out infinite;
+}
+
+.bubble-text {
+    margin: 0;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--text-color);
+    text-align: center;
+    line-height: 1.6;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
 /* 2. The Tooth Toggle Button */
 #theme-toggle {
     position: fixed;

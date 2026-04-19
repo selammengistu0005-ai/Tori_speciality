@@ -117,9 +117,9 @@ h1::after {
 /* Enamel (Top Left) */
 .line-top { 
     top: 35px; 
-    width: 125px;            /* Increased from 90px to 125px to reach the tooth */
-    transform: rotate(8deg);  /* Flattered the angle (from 18deg) to match the length */
-    right: -125px;           /* Must match the width to stay attached to the card */
+    width: 130px;            /* Long enough to reach the tooth */
+    right: -130px;           /* Matches the width to stay attached to card */
+    transform: rotate(-15deg); /* Negative value points the tip DOWN */
 }
 .line-mid { top: 25px; transform: rotate(-10deg); }
 .line-low { top: 25px; transform: rotate(165deg); }

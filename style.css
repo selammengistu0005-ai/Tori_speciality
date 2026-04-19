@@ -117,8 +117,10 @@ h1::after {
 
 /* Enamel (Top Left) */
 .line-top { 
-    top: 50%;                    /* Move the start point to the vertical center of the card */
-    transform: translateY(-50%) rotate(10deg); /* Counteract height, keep angle toward tooth */
+    top: 50%;                    /* Start at vertical middle of the card */
+    width: 140px;                /* Increased length to bridge the gap */
+    right: -140px;               /* Matches width to stay attached to card */
+    transform: translateY(-50%) rotate(8deg); /* Centered and angled toward the crown */
 }
 .line-mid { top: 25px; transform: rotate(-10deg); }
 .line-low { top: 25px; transform: rotate(165deg); }

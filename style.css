@@ -131,14 +131,12 @@ h1::after {
     transform: translateY(-50%) rotate(8deg); /* Centered and angled toward the crown */
 }
 /* Dentin (Middle Left) - Centered and Longer */
-/* Dentin (Middle Left) - Angled Upward to the Crown */
-.line-mid { 
     top: 50%;                    
-    width: 155px;                /* Slightly longer to reach the high mark */
-    right: -155px;               /* Match width to keep it connected to the frame */
+    width: 160px;                /* Slightly longer to cover the diagonal distance */
+    right: -160px;               /* Match width to keep it connected to the bubble edge */
     
-    /* Use 20deg to point UP. 120deg was the reason it detached! */
-    transform: translateY(-50%) rotate(20deg); 
+    /* Using a negative degree to pull the tip UP toward the crown */
+    transform: translateY(-50%) rotate(-18deg); 
 }
 /* Root Line (Right Side - Pointing to Gums) */
 .line-low { 

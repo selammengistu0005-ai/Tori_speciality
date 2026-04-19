@@ -105,3 +105,40 @@ h1::after {
     opacity: 1;
     transform: rotate(0) scale(1);
 }
+
+/* 4. The Gold Glass Bubble */
+.chat-bubble {
+    margin: 40px auto;
+    max-width: 400px;
+    padding: 20px 30px;
+    
+    /* The Glass Effect */
+    background: rgba(212, 175, 55, 0.05); /* Very subtle gold tint */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    
+    /* The Rounded Soft & Gold Border */
+    border: 1.5px solid var(--gold-accent);
+    border-radius: 50px; /* High radius for that soft "pill" look */
+    
+    /* Positioning & Animation */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    animation: float 4s ease-in-out infinite;
+}
+
+.bubble-text {
+    margin: 0;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--text-color);
+    text-align: center;
+}
+
+/* Subtle breathing animation to make it feel "alive" */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}

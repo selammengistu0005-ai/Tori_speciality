@@ -8,23 +8,30 @@
 </head>
 <body>
 
-   <button id="theme-toggle" aria-label="Toggle Theme">
-    <div class="icon-container">
-        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-        </svg>
-        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="5"></circle>
-            <line x1="12" y1="1" x2="12" y2="3"></line>
-            <line x1="12" y1="21" x2="12" y2="23"></line>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-            <line x1="1" y1="12" x2="3" y2="12"></line>
-            <line x1="21" y1="12" x2="23" y2="12"></line>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-        </svg>
+    <header class="main-header">
+    <div class="logo-wrapper">
+        <img src="https://github.com/selammengistu0005-ai/Tori_speciality/blob/main/main_logo_removebg-preview.png?raw=true" 
+             alt="Tori Speciality Logo" 
+             class="extended-logo">
     </div>
+</header>
+
+ <button id="theme-toggle" aria-label="Toggle Theme">
+    <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
+
+    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
 </button>
 
     <main>
@@ -34,9 +41,8 @@
         </div>
         <section class="feature-section">
     <div class="side-column">
-        <div class="blueprint-card">
+        <div class="blueprint-card card-enamel">
             <h3>Enamel (የጥርስ ውጫዊ ሽፋን)</h3>
-            <div class="line line-right line-top"></div>
             <p>Enamel ማለት የጥርስ ውጫዊው ጠንካራና ነጭ ሽፋን ሲሆን...</p>
             <p><strong>የሚጎዱ ነገሮች፡</strong></p>
             <ul class="blueprint-list">
@@ -47,9 +53,8 @@
             </ul>
         </div>
 
-        <div class="blueprint-card">
+        <div class="blueprint-card card-dentin">
             <h3>Dentin (ዴንቲን)</h3>
-            <div class="line line-right line-mid"></div>
             <p>ከኢንአመል በታች የሚገኝ ቢጫ ቀለም ያለው ክፍል ነው።..</p>
             <p><strong>የሚጎዱ ነገሮች፡</strong></p>
             <ul class="blueprint-list">
@@ -62,13 +67,17 @@
     </div>
 
     <div class="anatomy-container">
-        <img src="https://raw.githubusercontent.com/selammengistu0005-ai/Tori_speciality/main/the_tooth-removebg-preview%20(1).png" alt="Tooth Anatomy" class="feature-image">
-    </div>
+    <img src="https://raw.githubusercontent.com/selammengistu0005-ai/Tori_speciality/main/the_tooth-removebg-preview%20(1).png" alt="Tooth Anatomy" class="feature-image">
+    
+    <div class="dot ultra-blue"></div>  
+    <div class="dot ultra-purple"></div> 
+    <div class="dot ultra-red"></div>    
+</div>
+      
 
     <div class="side-column">
-        <div class="blueprint-card">
+        <div class="blueprint-card card-root">
             <h3>Root (የጥርስ ሥር)</h3>
-            <div class="line line-left line-low"></div>
             <p>ጥርስ ከመንጋጋ አጥንት ጋር እንዲያያዝ የሚያደርግ...</p>
             <p><strong>የሚጎዱ ነገሮች፡</strong></p>
             <ul class="blueprint-list">
@@ -80,6 +89,29 @@
         </div>
     </div>
 </section>
+
+<section class="testimonials-section">
+    <h2 class="section-title">Patient Feedback</h2>
+    <div class="testimonials-container">
+        
+        <div class="testimonial-card">
+            <p class="feedback-text">"I visited Tori Speciality Dental Clinic today with my wife. We booked an urgent appointment, and they helped us immediately — we were seen right away at 12:00."</p>
+            <h4 class="patient-name">— Dallel Ahmed</h4>
+        </div>
+
+        <div class="testimonial-card">
+            <p class="feedback-text">"I had some severe tooth pain while visiting Addis Ababa and decided to stop by Tori Dental — so glad I did! From the moment I walked in, the front desk receptionist was warm and welcoming, and the entire staff made me feel comfortable and cared for right away."</p>
+            <h4 class="patient-name">— Elzabeth Debebe</h4>
+        </div>
+
+        <div class="testimonial-card">
+            <p class="feedback-text">"I’ve always been a bit anxious about going to the dentist, but the team here made me feel completely at ease. From the moment I walked in, the staff was incredibly welcoming and professional. The dentist was gentle, patient, and took the time to explain every step of the procedure. I left feeling confident and pain-free. I Highly recommend!"</p>
+            <h4 class="patient-name">— Aman Hsy</h4>
+        </div>
+
+    </div>
+</section>
+
     </main>
 
     <script src="script.js"></script>

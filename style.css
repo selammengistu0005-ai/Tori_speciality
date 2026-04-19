@@ -114,7 +114,11 @@ h1::after {
 .line-right { right: -90px; }
 .line-left { left: -90px; }
 
-.line-top { top: 25px; transform: rotate(18deg); }
+/* Enamel (Top Left) */
+.line-top { 
+    top: 35px;            /* Increased from 25px to move the start point down slightly */
+    transform: rotate(10deg); /* Decreased from 18deg to make the angle flatter */
+}
 .line-mid { top: 25px; transform: rotate(-10deg); }
 .line-low { top: 25px; transform: rotate(165deg); }
 

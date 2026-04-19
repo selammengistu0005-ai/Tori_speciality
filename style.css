@@ -52,98 +52,25 @@ body {
     transform: scale(1.1);
 }
 
-/* 3. Branding & Typography */
-h1 {
-    color: var(--gold-accent);
-    text-align: center;
-    margin-top: 20vh;
-    font-size: 3rem;
-    text-transform: uppercase;
-}
-
-h1::after {
-    content: "";
-    display: block;
-    width: 60px;
-    height: 4px;
-    background: var(--gold-accent);
-    margin: 20px auto;
-    transform: skewX(-20deg); /* Mimics the white slashes in your logo */
-}
-
-/* Styling the SVG icons */
-.icon-container {
-    position: relative;
-    width: 35px;
-    height: 35px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--gold-accent); /* Makes both icons gold */
-}
-
-.moon-icon, .sun-icon {
+/* 3. Calibrated Blueprint Lines */
+.line {
     position: absolute;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.5s ease, opacity 0.5s ease;
+    height: 1px;
+    background: var(--gold-accent);
+    opacity: 0.6;
+    width: 90px;
+    pointer-events: none;
+    z-index: 5;
 }
 
-/* Light Mode: Show Moon, Hide Sun */
-.sun-icon {
-    opacity: 0;
-    transform: rotate(-90deg) scale(0);
-}
+.line-right { right: -90px; }
+.line-left { left: -90px; }
 
-/* Dark Mode: Hide Moon, Show Sun */
-[data-theme="dark"] .moon-icon {
-    opacity: 0;
-    transform: rotate(90deg) scale(0);
-}
+.line-top { top: 25px; transform: rotate(18deg); }
+.line-mid { top: 25px; transform: rotate(-10deg); }
+.line-low { top: 25px; transform: rotate(165deg); }
 
-[data-theme="dark"] .sun-icon {
-    opacity: 1;
-    transform: rotate(0) scale(1);
-}
-
-/* 4. The Gold Glass Bubble */
-.chat-bubble {
-    margin: 40px auto;
-    max-width: 400px;
-    padding: 20px 30px;
-    
-    /* The Glass Effect */
-    background: rgba(212, 175, 55, 0.05); /* Very subtle gold tint */
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    
-    /* The Rounded Soft & Gold Border */
-    border: 1.5px solid var(--gold-accent);
-    border-radius: 50px; /* High radius for that soft "pill" look */
-    
-    /* Positioning & Animation */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-.bubble-text {
-    margin: 0;
-    font-style: italic;
-    font-size: 1.1rem;
-    color: var(--text-color);
-    text-align: center;
-}
-
-/* Subtle breathing animation to make it feel "alive" */
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
-
-/* --- Feature Anatomy Section --- */
-/* --- Feature Anatomy (Blueprint Style) --- */
+/* 4. Feature Anatomy Section */
 .feature-section {
     display: flex;
     justify-content: center;
@@ -158,7 +85,7 @@ h1::after {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 100px; /* Space between the text boxes */
+    gap: 100px;
 }
 
 .anatomy-container {
@@ -173,7 +100,6 @@ h1::after {
     filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.2));
 }
 
-/* 4. The Blueprint Cards */
 .blueprint-card {
     position: relative;
     padding: 20px;
@@ -198,86 +124,7 @@ h1::after {
     opacity: 0.9;
 }
 
-/* 5. Drawing the Gold Lines */
-.line {
-    position: absolute;
-    height: 1px;
-    background: var(--gold-accent);
-    opacity: 0.5;
-    width: 80px; /* Length of the line */
-    pointer-events: none;
-}
-
-/* Positioning lines to extend from the cards */
-.line-right { right: -80px; }
-.line-left { left: -80px; }
-
-/* Angles to point at specific tooth parts */
-.line-top { top: 30%; transform: rotate(20deg); }
-.line-mid { top: 50%; transform: rotate(-10deg); }
-.line-low { top: 40%; transform: rotate(160deg); }
-
-/* 6. Responsive Fix (Stacking for Mobile) */
-@media (max-width: 900px) {
-    .feature-section {
-        flex-direction: column;
-        gap: 40px;
-    }
-    .line { display: none; } /* Lines don't work well on mobile stacking */
-    .side-column { gap: 20px; }
-    .anatomy-container { order: -1; width: 200px; } /* Tooth moves to top on mobile */
-}
-
-/* 3. The Pulsing Hotspots */
-.hotspot {
-    position: absolute;
-    width: 14px;
-    height: 14px;
-    background: var(--gold-accent);
-    border-radius: 50%;
-    cursor: pointer;
-    z-index: 10;
-    /* The Pulse Effect */
-    box-shadow: 0 0 0 rgba(212, 175, 55, 0.4);
-    animation: gold-pulse 2s infinite;
-}
-
-/* Precise positioning on your tooth image */
-#spot-top { top: 25%; left: 48%; }
-#spot-mid { top: 45%; left: 42%; }
-#spot-low { top: 75%; left: 52%; }
-
-@keyframes gold-pulse {
-    0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
-    70% { box-shadow: 0 0 0 12px rgba(212, 175, 55, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
-}
-
-/* 4. The Detail Card (Matching your Bubble style) */
-.detail-card {
-    width: 320px;
-    padding: 25px;
-    background: rgba(212, 175, 55, 0.05);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid var(--gold-accent);
-    border-radius: 24px;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.detail-card h3 {
-    color: var(--gold-accent);
-    margin-top: 0;
-    font-size: 1.3rem;
-}
-
-.detail-card p {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-bottom: 0;
-}
-
-
+/* 5. Lists and Markers */
 .blueprint-list {
     margin: 8px 0 0 0;
     padding-left: 20px;
@@ -291,7 +138,17 @@ h1::after {
     line-height: 1.4;
 }
 
-/* Optional: Make the bullets gold to match the theme */
 .blueprint-list li::marker {
     color: var(--gold-accent);
+}
+
+/* 6. Responsive Fix */
+@media (max-width: 900px) {
+    .feature-section {
+        flex-direction: column;
+        gap: 40px;
+    }
+    .line { display: none; }
+    .side-column { gap: 20px; }
+    .anatomy-container { order: -1; width: 200px; }
 }

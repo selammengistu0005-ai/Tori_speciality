@@ -137,7 +137,7 @@ h1::after {
     right: -160px;               /* Match width to keep it connected to the bubble edge */
     
     /* Using a negative degree to pull the tip UP toward the crown */
-    transform: translateY(-50%) rotate(-18deg); 
+    transform: translateY(-50%) rotate(-50deg); 
 }
 /* Root Line (Right Side - Pointing to Gums) */
 .line-low { 

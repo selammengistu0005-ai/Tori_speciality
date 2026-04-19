@@ -100,7 +100,11 @@ h1::after {
 }
 
 /* 3. Calibrated Blueprint Lines */
-/* 1. Base Line Style (Make it Thicker and More Visible) */
+
+.side-column:last-of-type .blueprint-card {
+    margin-top: 120px; /* Adjust this number to move it further down */
+}
+
 .line {
     position: absolute;
     height: 3px;                 /* Increased thickness from 1px to 3px */
@@ -123,7 +127,13 @@ h1::after {
     transform: translateY(-50%) rotate(8deg); /* Centered and angled toward the crown */
 }
 .line-mid { top: 25px; transform: rotate(-10deg); }
-.line-low { top: 25px; transform: rotate(165deg); }
+/* Root Line (Right Side - Pointing to Gums) */
+.line-low { 
+    top: 50%;                    /* Start at the middle of the bubble */
+    width: 130px;                /* Reach across to the tooth */
+    left: -130px;                /* Anchor to the left side of the bubble */
+    transform: translateY(-50%) rotate(175deg); /* Pointing slightly upward toward roots */
+}
 
 /* 4. Feature Anatomy Section */
 .feature-section {

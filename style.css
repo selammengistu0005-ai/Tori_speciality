@@ -141,3 +141,76 @@ h1::after {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
 }
+
+/* --- Feature Anatomy Section --- */
+.feature-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    margin: 60px auto;
+    padding: 20px;
+    max-width: 900px;
+}
+
+.anatomy-container {
+    position: relative;
+    width: 280px; /* Controlled size for a clinical look */
+}
+
+.feature-image {
+    width: 100%;
+    height: auto;
+    /* Soft gold glow around the tooth */
+    filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.2));
+}
+
+/* 3. The Pulsing Hotspots */
+.hotspot {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background: var(--gold-accent);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    /* The Pulse Effect */
+    box-shadow: 0 0 0 rgba(212, 175, 55, 0.4);
+    animation: gold-pulse 2s infinite;
+}
+
+/* Precise positioning on your tooth image */
+#spot-top { top: 25%; left: 48%; }
+#spot-mid { top: 45%; left: 42%; }
+#spot-low { top: 75%; left: 52%; }
+
+@keyframes gold-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
+    70% { box-shadow: 0 0 0 12px rgba(212, 175, 55, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+}
+
+/* 4. The Detail Card (Matching your Bubble style) */
+.detail-card {
+    width: 320px;
+    padding: 25px;
+    background: rgba(212, 175, 55, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--gold-accent);
+    border-radius: 24px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.detail-card h3 {
+    color: var(--gold-accent);
+    margin-top: 0;
+    font-size: 1.3rem;
+}
+
+.detail-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 0;
+}

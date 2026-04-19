@@ -23,3 +23,19 @@ themeToggle.addEventListener('click', () => {
         localStorage.setItem('theme', 'dark');
     }
 });
+
+const textElement = document.querySelector('.bubble-text');
+const message = "Modern dentistry, redefined for your comfort.";
+let index = 0;
+
+function typeWriter() {
+    if (index < message.length) {
+        textElement.textContent += message.charAt(index);
+        index++;
+        // 100ms is "slow and steady". Change to 50ms for faster, 150ms for slower.
+        setTimeout(typeWriter, 100); 
+    }
+}
+
+// Start the effect when the page loads
+window.onload = typeWriter;

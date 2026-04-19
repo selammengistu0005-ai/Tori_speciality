@@ -138,7 +138,7 @@ h1::after {
     
     /* Reduced from -50deg to -15deg. 
        This keeps the line "glued" to the frame while pointing UP. */
-    transform: translateY(-50%) rotate(-15deg); 
+    transform: translateY(-50%) rotate(-25deg); 
 }
 /* Root Line (Right Side - Pointing to Gums) */
 .line-low { 

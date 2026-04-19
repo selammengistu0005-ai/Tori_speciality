@@ -25,53 +25,22 @@ themeToggle.addEventListener('click', () => {
 });
 
 // 1. Data for the tooth parts
-const toothData = {
-    enamel: {
-        title: "Advanced Enamel Care",
-        desc: "We use specialized fluoride treatments and laser technology to strengthen your tooth's outer shield."
-    },
-    dentin: {
-        title: "Dentin Protection",
-        desc: "Our bio-compatible bonding agents seal the sensitive layers of your teeth to eliminate cold and heat pain."
-    },
-    root: {
-        title: "Deep Root Health",
-        desc: "Precision endodontic care ensures the foundation of your smile remains healthy and infection-free."
-    }
-};
-
-// 2. Function to update the detail card
-function showDetail(part) {
-    const card = document.getElementById('detail-card');
-    const title = document.getElementById('detail-title');
-    const desc = document.getElementById('detail-desc');
-
-    // Start fade-out
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(10px)';
-
-    // Wait 300ms for fade-out to finish, then swap text and fade-in
-    setTimeout(() => {
-        title.textContent = toothData[part].title;
-        desc.textContent = toothData[part].desc;
-        
-        card.style.opacity = '1';
-        card.style.transform = 'translateY(0)';
-    }, 300);
-}
-
-const textElement = document.querySelector('.bubble-text');
+// --- Clean Typewriter Logic ---
 const message = "Tori ባለፉት 5 ዓመታት በአዲስ አበባ ከተማ ውስጥ ጥራት ያለው የጥርስ ሕክምና አገልግሎት በመስጠት ላይ ይገኛል.... በዚህ አጭር ጊዜ ውስጥ ከ 100,000 በላይ ታካሚዎችን በማከም የብዙዎችን ፈገግታ መመለስ ችሏል.... ማዕከላችን በዘመናዊ ቴክኖሎጂ የታገዘ ቀልጣፋ አገልግሎት በመስጠት የታካሚዎቹን እርካታ ማረጋገጥ ግቡ አድርጎ ይሰራል...";
 let index = 0;
 
 function typeWriter() {
-    if (index < message.length) {
+    const textElement = document.querySelector('.bubble-text');
+    
+    // Check if element exists and we haven't finished the message
+    if (textElement && index < message.length) {
         textElement.textContent += message.charAt(index);
         index++;
-        // 100ms is "slow and steady". Change to 50ms for faster, 150ms for slower.
-        setTimeout(typeWriter, 100); 
+        
+        // Slightly faster speed (70ms) to keep the user engaged with the long text
+        setTimeout(typeWriter, 70); 
     }
 }
 
-// Start the effect when the page loads
-window.onload = typeWriter;
+// Ensure the effect starts after the full page (including images) is ready
+window.addEventListener('load', typeWriter);

@@ -133,8 +133,8 @@ h1::after {
 /* Dentin (Middle Left) - Now Angling UPWARD */
 .line-mid { 
     top: 50%;                    
-    width: 160px;                /* Slightly longer to cover the diagonal distance */
-    right: -160px;               /* Match width to keep it connected to the bubble edge */
+    width: 200px;                /* Slightly longer to cover the diagonal distance */
+    right: -200px;               /* Match width to keep it connected to the bubble edge */
     
     /* Using a negative degree to pull the tip UP toward the crown */
     transform: translateY(-50%) rotate(-50deg); 

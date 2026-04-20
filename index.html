@@ -14,6 +14,11 @@
              alt="Tori Speciality Logo" 
              class="extended-logo">
     </div>
+    <nav class="pill-nav">
+        <a href="#" class="nav-pill">Home</a>
+        <a href="#" class="nav-pill">About</a>
+        <a href="#" class="nav-pill">Book an Appointment</a>
+    </nav>
 </header>
 
  <button id="theme-toggle" aria-label="Toggle Theme">
@@ -34,6 +39,7 @@
     </svg>
 </button>
 
+<div id="home-frame">
     <main>
         <h1>Welcome to Tori Speciality Clinic</h1>
         <div class="chat-bubble">
@@ -113,6 +119,84 @@
 </section>
 
     </main>
+
+    </div> 
+    <div id="about-frame" style="display: none;">
+    <main>
+    <h1 style="margin-top: 20vh;">About Our Clinic</h1>
+    
+    <div class="chat-bubble-container" style="position: relative; max-width: 800px; margin: 0 auto;">
+        
+        <button id="translate-btn" class="translate-pill">
+            📖 English
+        </button>
+
+        <div class="chat-bubble">
+            <p class="bubble-text" id="typing-text"></p>
+            <span class="typing-cursor"></span>
+        </div>
+    </div>
+</main>
+</div>
+
+<div id="book-frame" style="display: none;">
+    <main>
+        <h1 style="margin-top: 15vh;">Book an Appointment</h1>
+        <div class="appointment-form">
+            <div class="form-notes">
+                <p>• እባክዎን ትክክለኛ መረጃ መሙላትዎን ያረጋግጡ።</p>
+                <p>• ስልክ ቁጥርዎ በስራ ሰዓት ክፍት መሆን አለበት።</p>
+                <p>• የህመምዎን ሁኔታ በግልጽ ያስረዱ።</p>
+            </div>
+            <div class="input-group">
+                <label>Full Name (ሙሉ ስም)</label>
+                <input type="text" id="patient-name" placeholder="Enter your name">
+            </div>
+
+            <div class="input-group">
+                <label>Phone Number (ስልክ ቁጥር)</label>
+                <div class="phone-input-wrapper">
+                    <span class="country-code">+251</span>
+                    <input type="tel" id="patient-phone" placeholder="911223344" maxlength="9">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Cause of Visit (የህመሙ አይነት)</label>
+                <textarea id="visit-cause" placeholder="Briefly describe what happened..."></textarea>
+            </div>
+
+            <button class="nav-pill active-pill" id="submit-appointment" style="width: 100%; margin-top: 20px; cursor: pointer;">
+                Confirm Appointment
+            </button>
+        </div>
+    </main>
+</div>
+
+<script type="module">
+  // Import the functions you need from the SDKs
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-lite.js";
+
+  // Your specific project credentials
+  const firebaseConfig = {
+    apiKey: "AIzaSyD73Uyrrl8JDP5X_yxT2Zp1fV9oIpAvpXA",
+    authDomain: "lumi-75592.firebaseapp.com",
+    projectId: "lumi-75592",
+    storageBucket: "lumi-75592.firebasestorage.app",
+    messagingSenderId: "419726897354",
+    appId: "1:419726897354:web:3b27219dd60b26dbb84433",
+    measurementId: "G-23937MS0LH"
+  };
+
+  // Initialize Firebase and Firestore
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // We attach these to the 'window' object so your script.js can access them easily
+  window.db = db;
+  window.dbMethods = { collection, addDoc, serverTimestamp };
+</script>
 
     <script src="script.js"></script>
 </body>

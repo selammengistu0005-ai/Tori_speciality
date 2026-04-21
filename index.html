@@ -143,21 +143,34 @@
     <main>
         <h1 style="margin-top: 15vh;">Book an Appointment</h1>
         <div class="appointment-form">
+            
+            <div class="auth-options">
+                <button class="auth-bubble google-auth">
+                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/action/google.svg" alt="G">
+                    Sign in with Google
+                </button>
+                <button class="auth-bubble email-auth">
+                    <span>✉️</span>
+                    Sign in with Email
+                </button>
+            </div>
+
             <div class="form-notes">
                 <p>• እባክዎን ትክክለኛ መረጃ መሙላትዎን ያረጋግጡ።</p>
                 <p>• ስልክ ቁጥርዎ በስራ ሰዓት ክፍት መሆን አለበት።</p>
                 <p>• የህመምዎን ሁኔታ በግልጽ ያስረዱ።</p>
             </div>
+
             <div class="input-group">
                 <label>Full Name (ሙሉ ስም)</label>
                 <input type="text" id="patient-name" placeholder="Enter your name">
             </div>
 
             <div class="input-group">
-                <label>Phone Number (ስልክ ቁጥር)</label>
+                <label>Phone Number (ስልክ ቁጥር) <span style="color: var(--gold-accent);">*</span></label>
                 <div class="phone-input-wrapper">
                     <span class="country-code">+251</span>
-                    <input type="tel" id="patient-phone" placeholder="911223344" maxlength="9">
+                    <input type="tel" id="patient-phone" placeholder="911223344" maxlength="9" required>
                 </div>
             </div>
 
@@ -174,11 +187,12 @@
 </div>
 
 <script type="module">
-  // Import the functions you need from the SDKs
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
   import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-lite.js";
+  
+  // NEW: Import Authentication modules
+  import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-  // Your specific project credentials
   const firebaseConfig = {
     apiKey: "AIzaSyD73Uyrrl8JDP5X_yxT2Zp1fV9oIpAvpXA",
     authDomain: "lumi-75592.firebaseapp.com",
@@ -189,13 +203,25 @@
     measurementId: "G-23937MS0LH"
   };
 
-  // Initialize Firebase and Firestore
+  // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
+  
+  // NEW: Initialize Auth and Google Provider
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+  provider.setCustomParameters({
+    prompt: 'select_account' // This forces the list of accounts to appear every click
+    });
 
-  // We attach these to the 'window' object so your script.js can access them easily
+  // Attach to window so script.js can use them
   window.db = db;
   window.dbMethods = { collection, addDoc, serverTimestamp };
+  
+  // NEW: Attach Auth methods to window
+  window.auth = auth;
+  window.googleProvider = provider;
+  window.signInWithPopup = signInWithPopup;
 </script>
 
     <script src="script.js"></script>

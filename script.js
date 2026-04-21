@@ -216,3 +216,71 @@ translateBtn.addEventListener('click', () => {
         startTyping(aboutContent);
     }
 });
+
+/* --- 1. The Google Account Picker Logic --- */
+// (Only define these variables ONCE at the top of the section)
+const googleBtn = document.querySelector('.google-auth');
+const emailBtn = document.querySelector('.email-auth');
+const phoneInput = document.getElementById('patient-phone');
+const nameInput = document.getElementById('patient-name');
+const finalSubmitBtn = document.getElementById('submit-appointment');
+
+if (googleBtn) {
+    googleBtn.addEventListener('click', async () => {
+        try {
+            // This triggers the "Choose an Account" popup from the window methods
+            const result = await window.signInWithPopup(window.auth, window.googleProvider);
+            const user = result.user;
+
+            // Auto-fill the name field from the Google account
+            if (nameInput) {
+                nameInput.value = user.displayName;
+            }
+
+            // Visual feedback on the bubble
+            googleBtn.innerHTML = `✅ Linked as ${user.displayName.split(' ')[0]}`;
+            googleBtn.style.borderColor = "var(--gold-accent)";
+
+            // Move focus to the mandatory phone field
+            phoneInput?.focus();
+            
+            // Re-run validation to see if the button can be enabled
+            validateBookingForm();
+
+        } catch (error) {
+            console.error("Auth Error:", error);
+            if (error.code === 'auth/popup-closed-by-user') {
+                alert("Sign-in was closed. Please select an account to auto-fill your info!");
+            }
+        }
+    });
+}
+
+/* --- 2. Mandatory Phone Validation Logic --- */
+function validateBookingForm() {
+    if (!phoneInput || !nameInput || !finalSubmitBtn) return;
+
+    const phoneValue = phoneInput.value.trim();
+    const nameValue = nameInput.value.trim();
+
+    // Logic: Exactly 9 digits for phone and name isn't empty
+    const isPhoneValid = phoneValue.length === 9;
+    const isNameValid = nameValue.length > 0;
+
+    if (isPhoneValid && isNameValid) {
+        finalSubmitBtn.disabled = false;
+        finalSubmitBtn.style.opacity = "1";
+        finalSubmitBtn.style.cursor = "pointer";
+    } else {
+        finalSubmitBtn.disabled = true;
+        finalSubmitBtn.style.opacity = "0.5";
+        finalSubmitBtn.style.cursor = "not-allowed";
+    }
+}
+
+// Attach listeners to update button state in real-time
+phoneInput?.addEventListener('input', validateBookingForm);
+nameInput?.addEventListener('input', validateBookingForm);
+
+// Run once on load to ensure button starts disabled
+validateBookingForm();

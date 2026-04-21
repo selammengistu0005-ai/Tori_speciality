@@ -589,6 +589,57 @@ h1::after {
     display: none !important;
 }
 
+/* --- Auth Bubbles Styling --- */
+.auth-options {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    justify-content: center;
+}
+
+.auth-bubble {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px;
+    border-radius: 50px; /* This creates the 'bubble' look */
+    border: 1px solid var(--border-color);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-color);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.auth-bubble img {
+    width: 18px; /* Sizes the Google icon perfectly */
+    height: 18px;
+}
+
+/* Hover effects to make them feel interactive */
+.auth-bubble:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+    border-color: var(--gold-accent);
+}
+
+.google-auth:hover {
+    box-shadow: 0 4px 15px rgba(66, 133, 244, 0.2);
+}
+
+/* --- Mandatory Field Styling --- */
+input:invalid:focus {
+    border-color: #ff4d4d; /* Changes border to red if the phone is wrong/missing */
+}
+
+.required-star {
+    color: #ff4d4d;
+    margin-left: 4px;
+    font-weight: bold;
+}
+
 @keyframes blinkCursor {
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }

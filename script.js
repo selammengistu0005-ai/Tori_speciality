@@ -78,68 +78,6 @@ pills.forEach(pill => {
     });
 });
 
-// --- Appointment Confirmation Animation ---
-// --- Appointment Confirmation & Firebase Integration ---
-const submitBtn = document.getElementById('submit-appointment');
-const appointmentForm = document.querySelector('.appointment-form');
-
-if (submitBtn && appointmentForm) {
-    submitBtn.addEventListener('click', async (e) => {
-        e.preventDefault();
-
-        // 1. Capture the input values
-        const nameVal = document.getElementById('patient-name').value;
-        const phoneVal = document.getElementById('patient-phone').value;
-        const causeVal = document.getElementById('visit-cause').value;
-
-        // 2. Simple Validation: Ensure Name and Phone are provided
-        if (!nameVal || !phoneVal) {
-            alert("Please provide both a name and phone number.");
-            return;
-        }
-
-        try {
-            const { collection, addDoc, serverTimestamp } = window.dbMethods;
-            
-            // 1. Reference to the parent document and the sub-collection
-            // We use the 'doc' and 'setDoc' logic to ensure tori_data exists
-            // To do this, I'm adding a small check:
-            
-            const logsRef = collection(window.db, "agents", "tori_data", "logs");
-
-            // 2. Send the data. 
-            // Firestore will actually auto-create the path for you 
-            // BUT only if your security rules allow the path to be "virtual"
-            await addDoc(logsRef, {
-                patientName: nameVal,
-                phone: "+251" + phoneVal,
-                cause: causeVal,
-                timestamp: serverTimestamp(),
-                status: "pending_call",
-                agent_origin: "Tori Clinic Web"
-            });
-
-            // 3. Visual Animation
-            appointmentForm.classList.add('form-success');
-
-            setTimeout(() => {
-                appointmentForm.innerHTML = `
-                    <div class="success-message" style="display: block;">
-                        <h2 style="color: var(--gold-accent); margin-bottom: 15px;">Appointment Sent!</h2>
-                        <p style="color: white;">Thank you for choosing Tori Clinic. <br> We will call you shortly at +251 ${phoneVal}.</p>
-                        <div class="dot ultra-blue" style="position: relative; margin: 30px auto; float: none;"></div>
-                    </div>
-                `;
-                appointmentForm.classList.remove('form-success');
-            }, 500);
-
-        } catch (error) {
-            console.error("Firebase Error:", error);
-            alert("Connection error. Ensure your Firebase Rules are updated.");
-        }
-    });
-}
-
 // --- Typing Effect for About Section ---
 
 // 1. Define the full content (including HTML like <strong> and emojis)
@@ -217,8 +155,10 @@ translateBtn.addEventListener('click', () => {
     }
 });
 
-/* --- 1. The Google Account Picker Logic --- */
-// (Only define these variables ONCE at the top of the section)
+/* --- 1. The Global Auth State --- */
+let loggedInEmail = ""; // This will hold the email for the database
+
+/* --- 2. The Google Account Picker Logic --- */
 const googleBtn = document.querySelector('.google-auth');
 const emailBtn = document.querySelector('.email-auth');
 const phoneInput = document.getElementById('patient-phone');
@@ -228,23 +168,20 @@ const finalSubmitBtn = document.getElementById('submit-appointment');
 if (googleBtn) {
     googleBtn.addEventListener('click', async () => {
         try {
-            // This triggers the "Choose an Account" popup from the window methods
             const result = await window.signInWithPopup(window.auth, window.googleProvider);
             const user = result.user;
 
-            // Auto-fill the name field from the Google account
+            // --- ADDED: Store the email for the dashboard ---
+            loggedInEmail = user.email; 
+
             if (nameInput) {
                 nameInput.value = user.displayName;
             }
 
-            // Visual feedback on the bubble
             googleBtn.innerHTML = `✅ Linked as ${user.displayName.split(' ')[0]}`;
             googleBtn.style.borderColor = "var(--gold-accent)";
 
-            // Move focus to the mandatory phone field
             phoneInput?.focus();
-            
-            // Re-run validation to see if the button can be enabled
             validateBookingForm();
 
         } catch (error) {
@@ -256,31 +193,68 @@ if (googleBtn) {
     });
 }
 
-/* --- 2. Mandatory Phone Validation Logic --- */
-function validateBookingForm() {
-    if (!phoneInput || !nameInput || !finalSubmitBtn) return;
+// --- Appointment Confirmation & Firebase Integration ---
+const submitBtn = document.getElementById('submit-appointment');
+const appointmentForm = document.querySelector('.appointment-form');
 
-    const phoneValue = phoneInput.value.trim();
-    const nameValue = nameInput.value.trim();
+if (submitBtn && appointmentForm) {
+    submitBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
 
-    // Logic: Exactly 9 digits for phone and name isn't empty
-    const isPhoneValid = phoneValue.length === 9;
-    const isNameValid = nameValue.length > 0;
+        const nameVal = document.getElementById('patient-name').value;
+        const phoneVal = document.getElementById('patient-phone').value;
+        const causeVal = document.getElementById('visit-cause').value;
 
-    if (isPhoneValid && isNameValid) {
-        finalSubmitBtn.disabled = false;
-        finalSubmitBtn.style.opacity = "1";
-        finalSubmitBtn.style.cursor = "pointer";
-    } else {
-        finalSubmitBtn.disabled = true;
-        finalSubmitBtn.style.opacity = "0.5";
-        finalSubmitBtn.style.cursor = "not-allowed";
-    }
+        if (!nameVal || !phoneVal) {
+            alert("Please provide both a name and phone number.");
+            return;
+        }
+
+        try {
+            const { collection, addDoc, serverTimestamp } = window.dbMethods;
+            const logsRef = collection(window.db, "agents", "tori_data", "logs");
+
+            // --- UPDATED: Now includes the patientEmail field ---
+            await addDoc(logsRef, {
+                patientName: nameVal,
+                patientEmail: loggedInEmail || "Guest User", // Saves email or "Guest"
+                phone: "+251" + phoneVal,
+                cause: causeVal,
+                timestamp: serverTimestamp(),
+                status: "pending_call",
+                agent_origin: "Tori Clinic Web"
+            });
+
+            appointmentForm.classList.add('form-success');
+
+            setTimeout(() => {
+                appointmentForm.innerHTML = `
+                    <div class="success-message" style="display: block;">
+                        <h2 style="color: var(--gold-accent); margin-bottom: 15px;">Appointment Sent!</h2>
+                        <p style="color: white;">Thank you for choosing Tori Clinic. <br> We will call you shortly at +251 ${phoneVal}.</p>
+                        <div class="dot ultra-blue" style="position: relative; margin: 30px auto; float: none;"></div>
+                    </div>
+                `;
+                appointmentForm.classList.remove('form-success');
+            }, 500);
+
+        } catch (error) {
+            console.error("Firebase Error:", error);
+            alert("Connection error. Ensure your Firebase Rules are updated.");
+        }
+    });
 }
 
-// Attach listeners to update button state in real-time
+function validateBookingForm() {
+    if (!phoneInput || !nameInput || !finalSubmitBtn) return;
+    const isPhoneValid = phoneInput.value.trim().length === 9;
+    const isNameValid = nameInput.value.trim().length > 0;
+
+    finalSubmitBtn.disabled = !(isPhoneValid && isNameValid);
+    finalSubmitBtn.style.opacity = finalSubmitBtn.disabled ? "0.5" : "1";
+    finalSubmitBtn.style.cursor = finalSubmitBtn.disabled ? "not-allowed" : "pointer";
+}
+// Keep these listeners right below the function:
 phoneInput?.addEventListener('input', validateBookingForm);
 nameInput?.addEventListener('input', validateBookingForm);
-
-// Run once on load to ensure button starts disabled
 validateBookingForm();

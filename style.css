@@ -942,83 +942,84 @@ input:invalid:focus {
 }
 
 /* --- 2. THE MAIN MOBILE BREAKPOINT (Under 768px) --- */
+/* --- Comprehensive Responsive Fix --- */
 @media (max-width: 768px) {
-    /* Theme Toggle Fix */
+    /* 1. Theme Toggle - Fixed & Scaled */
     #theme-toggle {
         top: 15px;
         right: 15px;
-        position: fixed;
+        position: fixed; /* Stays in place during scroll */
         z-index: 1000;
+        padding: 8px;
     }
     
     #theme-toggle svg {
-        width: 22px;
-        height: 22px;
+        width: 18px; /* Extra small for mobile */
+        height: 18px;
     }
 
-    /* Welcome Text */
+    /* 2. Welcome Title (H1) */
     h1 {
-        font-size: 1.8rem;
-        margin-top: 12vh;
+        font-size: 1.6rem; 
+        margin-top: 12vh; /* Adjusted for smaller header */
+        letter-spacing: 1px;
     }
 
-    /* Navigation Buttons (The 3 Buttons) */
+    /* 3. Navigation Pills - STRICT HORIZONTAL */
     .pill-nav {
-        gap: 8px;
-        padding: 0 5px;
+        display: flex;
+        flex-direction: row; /* Force horizontal */
+        flex-wrap: nowrap;   /* Prevent stacking at all costs */
+        gap: 6px;            /* Very tight gap */
+        padding: 0 10px;
+        justify-content: center;
+        width: 100%;
     }
 
     .nav-pill {
-        padding: 8px 12px;
-        font-size: 0.7rem;
+        padding: 6px 10px;   /* Small padding to save space */
+        font-size: 0.65rem;  /* Small text to fit row */
+        white-space: nowrap; /* Prevents text from breaking into two lines */
+        flex: 0 1 auto;      /* Allows pills to shrink if needed */
     }
 
-    /* Chat Bubble */
+    /* 4. Chat Bubble - Compacted */
     .chat-bubble {
-        width: 95%;
-        margin: 20px auto;
+        width: 92%;
+        margin: 15px auto;
+        padding: 12px 18px;
+        border-radius: 20px;
     }
 
     .bubble-text {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
+        line-height: 1.4;
     }
 
-    /* Q&A section adjustments */
+    /* 5. Q&A and Testimonials */
     .qa-header {
-        font-size: 0.85rem;
-        padding: 15px;
+        font-size: 0.8rem;
+        padding: 12px 15px;
     }
 
     .qa-item.active .qa-body {
         max-height: 1200px; 
     }
 
-    /* Stacking logic */
     .testimonials-container {
         flex-direction: column;
         align-items: center;
     }
 }
 
-/* --- 3. TINY PHONES (Under 480px - iPhone SE, etc.) --- */
-@media (max-width: 480px) {
-    h1 {
-        font-size: 1.5rem; /* Even smaller for tiny screens */
-    }
-
-    .pill-nav {
-        flex-wrap: wrap; /* Allows buttons to drop to next line if it's too tight */
-        justify-content: center;
-    }
-
+/* --- Extra Tiny Screen Fix (e.g., iPhone 5/SE) --- */
+@media (max-width: 380px) {
     .nav-pill {
-        flex: 1 1 40%; /* Makes buttons more touch-friendly */
-        text-align: center;
+        padding: 5px 8px;
+        font-size: 0.6rem; /* Micro-text for the smallest devices */
     }
-
-    /* Make the Q&A text even more readable */
-    .qa-body p {
-        font-size: 0.85rem;
-        padding: 15px;
+    
+    h1 {
+        font-size: 1.4rem;
     }
 }

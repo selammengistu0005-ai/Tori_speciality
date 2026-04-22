@@ -968,19 +968,19 @@ input:invalid:focus {
     /* 3. Navigation Pills - STRICT HORIZONTAL */
     .pill-nav {
         display: flex;
-        flex-direction: row; /* Force horizontal */
-        flex-wrap: nowrap;   /* Prevent stacking at all costs */
-        gap: 6px;            /* Very tight gap */
-        padding: 0 10px;
+        flex-direction: row !important; /* Force horizontal alignment */
         justify-content: center;
+        gap: 5px; /* Minimal gap to save space */
+        padding: 0 10px;
         width: 100%;
     }
 
     .nav-pill {
-        padding: 6px 10px;   /* Small padding to save space */
-        font-size: 0.65rem;  /* Small text to fit row */
+        padding: 6px 10px; /* Slimmer buttons */
+        font-size: 0.7rem; /* Smaller text size */
+        min-width: 80px; /* Ensures they look uniform but small */
+        text-align: center;
         white-space: nowrap; /* Prevents text from breaking into two lines */
-        flex: 0 1 auto;      /* Allows pills to shrink if needed */
     }
 
     /* 4. Chat Bubble - Compacted */
@@ -1009,6 +1009,18 @@ input:invalid:focus {
     .testimonials-container {
         flex-direction: column;
         align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .pill-nav {
+        gap: 3px; /* Extra tight gap for tiny screens */
+    }
+
+    .nav-pill {
+        padding: 5px 8px;
+        font-size: 0.65rem; /* Smallest readable size */
+        min-width: 70px;
     }
 }
 

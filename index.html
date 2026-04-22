@@ -146,12 +146,8 @@
             
             <div class="auth-options">
                 <button class="auth-bubble google-auth">
-                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/action/google.svg" alt="G">
+                    <img src="https://github.com/selammengistu0005-ai/Tori_speciality/blob/main/google-logo-icon-gsuite-hd-701751694791470gzbayltphh-removebg-preview.png?raw=true" alt="G">
                     Sign in with Google
-                </button>
-                <button class="auth-bubble email-auth">
-                    <span>✉️</span>
-                    Sign in with Email
                 </button>
             </div>
 
@@ -184,6 +180,38 @@
             </button>
         </div>
     </main>
+</div>
+
+<div id="chat-overlay" class="chat-overlay"></div>
+
+<div id="ai-doctor-launcher" title="Chat with Tori AI">
+    <img src="https://github.com/selammengistu0005-ai/Tori_speciality/raw/main/doctors-transparent-icon-10-removebg-preview.png" alt="Doctor AI">
+    <div class="launcher-pulse"></div>
+</div>
+
+<div id="ai-chat-modal">
+    <div class="chat-header">
+        <div class="doctor-info">
+            <span class="status-dot"></span>
+            <h4>Tori AI Assistant</h4>
+        </div>
+        <button id="close-chat" aria-label="Close Chat">&times;</button>
+    </div>
+    
+    <div class="chat-body" id="chat-messages">
+        <div class="ai-bubble typing-indicator" id="typing-bubble" style="display: none;">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+
+    <div class="chat-footer">
+        <input type="text" id="chat-input" placeholder="How are you feeling today?">
+        <button id="send-chat">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="var(--gold-accent)">
+                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+            </svg>
+        </button>
+    </div>
 </div>
 
 <script type="module">

@@ -363,3 +363,62 @@ function appendMsg(type, text) {
 // Event Listeners
 sendBtn.onclick = handleSend;
 chatInput.onkeypress = (e) => { if(e.key === 'Enter') handleSend(); };
+
+// --- Q&A Accordion Logic ---
+// --- Updated Q&A Accordion & Typing Logic ---
+const qaItems = document.querySelectorAll('.qa-item');
+let qaTypingInterval; 
+
+qaItems.forEach(item => {
+    const header = item.querySelector('.qa-header');
+    const bodyP = item.querySelector('.qa-body p');
+    
+    // Store the full HTML (including <br> and 📍) so we can type it
+    const fullTextContent = bodyP.innerHTML;
+    // Clear it initially so it's empty when the page loads
+    bodyP.innerHTML = '';
+
+    header.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+
+        // 1. IMMEDIATELY stop any ongoing typing and close all others
+        clearInterval(qaTypingInterval);
+        qaItems.forEach(otherItem => {
+            otherItem.classList.remove('active');
+            otherItem.querySelector('.qa-body p').innerHTML = ''; // Reset text
+        });
+
+        // 2. If we are opening a new one
+        if (!isActive) {
+            item.classList.add('active');
+            
+            let charIndex = 0;
+            bodyP.innerHTML = ''; // Ensure it's clean
+
+            // Create and append the cursor
+            const cursorSpan = document.createElement('span');
+            cursorSpan.className = 'qa-cursor';
+            bodyP.appendChild(cursorSpan);
+
+            qaTypingInterval = setInterval(() => {
+                // HTML Tag Handling (prevents showing "<br>" as text)
+                if (fullTextContent[charIndex] === '<') {
+                    const endTagIndex = fullTextContent.indexOf('>', charIndex);
+                    const htmlTag = fullTextContent.substring(charIndex, endTagIndex + 1);
+                    cursorSpan.insertAdjacentHTML('beforebegin', htmlTag);
+                    charIndex = endTagIndex + 1;
+                } else {
+                    // Regular character or Emoji
+                    cursorSpan.insertAdjacentHTML('beforebegin', fullTextContent.charAt(charIndex));
+                    charIndex++;
+                }
+
+                // Finish line
+                if (charIndex >= fullTextContent.length) {
+                    clearInterval(qaTypingInterval);
+                    cursorSpan.remove(); // Optional: remove cursor when done
+                }
+            }, 100); // Speed: 25ms per character
+        }
+    });
+});

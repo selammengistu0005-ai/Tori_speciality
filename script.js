@@ -258,3 +258,108 @@ function validateBookingForm() {
 phoneInput?.addEventListener('input', validateBookingForm);
 nameInput?.addEventListener('input', validateBookingForm);
 validateBookingForm();
+
+/* --- AI Doctor Chat Logic --- */
+const doctorLauncher = document.getElementById('ai-doctor-launcher');
+const chatModal = document.getElementById('ai-chat-modal');
+const chatOverlay = document.getElementById('chat-overlay');
+const closeChat = document.getElementById('close-chat');
+const chatMessages = document.getElementById('chat-messages');
+const chatInput = document.getElementById('chat-input');
+const sendBtn = document.getElementById('send-chat');
+const typingBubble = document.getElementById('typing-bubble');
+
+// 1. Open Chat & Trigger IMMEDIATE Greeting
+doctorLauncher.addEventListener('click', () => {
+    // A. Open the "Portal" (Modal and Overlay)
+    chatModal.classList.add('active');
+    chatOverlay.classList.add('active');
+    
+    // B. CORRECTED CHECK: Count bubbles, but EXCLUDE the typing-bubble ID
+    const actualMessages = chatMessages.querySelectorAll('.ai-bubble:not(#typing-bubble), .user-bubble').length;
+
+    if (actualMessages === 0) { 
+        // C. START TYPING IMMEDIATELY
+        showTyping(true);
+
+        // D. Wait 1.5 seconds, then show the text
+        setTimeout(() => {
+            showTyping(false); 
+            appendMsg('ai-bubble', "Hello! I am **Tori's AI Assistant**. 🦷 How are you feeling today? I'm here to help you describe your symptoms before you see our doctors.");
+        }, 1500);
+    }
+});
+
+// Update your showTyping function to ensure it scrolls correctly
+
+
+// 2. Close Chat
+const closeAction = () => {
+    chatModal.classList.remove('active');
+    chatOverlay.classList.remove('active');
+};
+closeChat.addEventListener('click', closeAction);
+chatOverlay.addEventListener('click', closeAction);
+
+// 3. Handle Send (Backend Integration)
+const handleSend = async () => {
+    const text = chatInput.value.trim();
+    if(!text) return;
+
+    appendMsg('user-bubble', text);
+    chatInput.value = '';
+
+    // Show typing dots while waiting for Render backend
+    showTyping(true);
+
+    try {
+        const res = await fetch('https://selam-backend-1biy.onrender.com/api/support', { 
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ message: text })
+        });
+        
+        const data = await res.json();
+        showTyping(false); // Hide dots when data arrives
+        
+        appendMsg('ai-bubble', data.reply || "I am calibrated and ready. Ask me again.");
+        
+    } catch (err) {
+        showTyping(false);
+        appendMsg('ai-bubble', "System connection lost. Please check your connection.");
+        console.error("Backend Error:", err);
+    }
+};
+
+// 4. Unified Message Function (Markdown + Layout)
+function showTyping(show) {
+    if (!typingBubble) return;
+    typingBubble.style.display = show ? "block" : "none";
+    
+    // Ensure the scroll follows the dots
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+// Update appendMsg to ensure it plays nice with the typing bubble placement
+function appendMsg(type, text) {
+    const div = document.createElement('div');
+    
+    // CHANGE THIS: Don't force 'ai-bubble' on everything.
+    // 'type' will already be 'ai-bubble' or 'user-bubble' from your calls.
+    div.className = type; 
+    
+    let formattedText = text
+        .replace(/\*\*\*+(.*?)\*\*\*+/g, '<b>$1</b>') 
+        .replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')      
+        .replace(/\*(.*?)\*/g, '<i>$1</i>');         
+
+    div.innerHTML = formattedText;
+
+    // This part is perfect—it keeps the dots at the bottom!
+    chatMessages.insertBefore(div, typingBubble);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+// Event Listeners
+sendBtn.onclick = handleSend;
+chatInput.onkeypress = (e) => { if(e.key === 'Enter') handleSend(); };

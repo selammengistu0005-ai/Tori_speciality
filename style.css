@@ -1039,8 +1039,12 @@ input:invalid:focus {
 
     /* Shrink the container to fit the Spark 10C width */
     #about-frame .chat-bubble-container {
-        width: 95%;
-        margin-top: 50px; /* Space for the translate button */
+        width: 92% !important; /* Forces it to stay inside the screen */
+        max-width: 100% !important; /* Overrides the 800px inline style */
+        margin: 50px auto 0 auto !important; 
+        left: 0;
+        right: 0;
+        position: relative;
     }
 
     /* Adjust the translate button position so it doesn't overlap header */

@@ -1030,6 +1030,33 @@ input:invalid:focus {
         flex-direction: column;
         align-items: center;
     }
+
+    /* --- About Frame Mobile Adjustments --- */
+    #about-frame h1 {
+        margin-top: 5vh !important; /* Pulls the title up on phone */
+        font-size: 1.5rem;
+    }
+
+    /* Shrink the container to fit the Spark 10C width */
+    #about-frame .chat-bubble-container {
+        width: 95%;
+        margin-top: 50px; /* Space for the translate button */
+    }
+
+    /* Adjust the translate button position so it doesn't overlap header */
+    .translate-pill {
+        top: -40px;
+        right: 50%;
+        transform: translateX(50%); /* Centers the button on mobile */
+        font-size: 0.7rem;
+        padding: 4px 12px;
+    }
+
+    /* Ensure the About text size matches the home bubble size */
+    #about-frame .bubble-text {
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
 }
 
 @media (max-width: 480px) {

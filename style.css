@@ -640,6 +640,193 @@ input:invalid:focus {
     font-weight: bold;
 }
 
+/* --- 1. AI Doctor Launcher (Bottom Right) --- */
+#ai-doctor-launcher {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 70px;
+    height: 70px;
+    background: rgba(212, 175, 55, 0.9);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+    transition: var(--transition);
+}
+
+#ai-doctor-launcher:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+#ai-doctor-launcher img {
+    width: 45px;
+    height: 45px;
+}
+
+/* --- 2. Central Glass Chat Modal --- */
+#ai-chat-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    width: 420px;
+    height: 550px;
+    background: rgba(15, 15, 15, 0.7); /* Dark base for glass effect */
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 25px;
+    z-index: 3000;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Open State */
+#ai-chat-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* --- 3. Chat Header & UI --- */
+.chat-header {
+    padding: 20px;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.doctor-info h4 {
+    margin: 0;
+    color: var(--gold-accent);
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+
+#close-chat {
+    background: transparent;
+    border: none;
+    color: var(--gold-accent);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.chat-body {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* --- 4. Chat Bubbles --- */
+.ai-bubble {
+    background: rgba(212, 175, 55, 0.1);
+    color: white;
+    padding: 12px 18px;
+    border-radius: 18px 18px 18px 2px;
+    max-width: 80%;
+    font-size: 0.9rem;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    align-self: flex-start;
+}
+
+.user-bubble {
+    background: var(--gold-accent);
+    color: #000;
+    padding: 12px 18px;
+    border-radius: 18px 18px 2px 18px;
+    max-width: 80%;
+    font-size: 0.9rem;
+    align-self: flex-end;
+    font-weight: 500;
+}
+
+/* --- 5. Typing Indicator Animation --- */
+.typing-indicator span {
+    height: 8px;
+    width: 8px;
+    background: var(--gold-accent);
+    display: inline-block;
+    border-radius: 50%;
+    margin: 0 2px;
+    opacity: 0.4;
+    animation: chat-typing 1s infinite;
+}
+
+#typing-bubble {
+    align-self: flex-start;
+    background: rgba(212, 175, 55, 0.1);
+    padding: 12px 18px;
+    border-radius: 18px 18px 18px 2px;
+    display: none; /* JS will toggle this */
+    align-items: center; /* Vertically centers the dots */
+    justify-content: center; /* Horizontally centers the dots */
+    width: fit-content; /* Keeps the bubble tight around the dots */
+}
+
+.typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+.typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes chat-typing {
+    0%, 100% { transform: translateY(0); opacity: 0.4; }
+    50% { transform: translateY(-5px); opacity: 1; }
+}
+
+/* --- 6. Chat Footer Input --- */
+.chat-footer {
+    padding: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+#chat-input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 50px;
+    padding: 10px 20px;
+    color: white;
+    outline: none;
+}
+
+#send-chat {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+#send-chat:hover { transform: scale(1.2); }
+
+/* --- 7. The Background Blur Overlay --- */
+.chat-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    z-index: 2500;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.chat-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
 @keyframes blinkCursor {
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }

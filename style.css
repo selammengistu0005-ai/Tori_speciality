@@ -942,7 +942,6 @@ input:invalid:focus {
 }
 
 /* --- 2. THE MAIN MOBILE BREAKPOINT (Under 768px) --- */
-/* --- Comprehensive Responsive Fix --- */
 @media (max-width: 768px) {
     /* 1. Theme Toggle - Fixed & Scaled */
     #theme-toggle {
@@ -958,11 +957,32 @@ input:invalid:focus {
         height: 18px;
     }
 
+    /* --- New: Logo over Buttons Stack --- */
+    .main-header {
+        display: flex;
+        flex-direction: column !important; /* Stack vertically */
+        align-items: center !important;
+        gap: 10px; /* Space between logo and buttons */
+        padding-top: 15px;
+    }
+
+    .logo-wrapper {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .extended-logo {
+        height: 45px; /* Scaled for your Spark 10C */
+        width: auto;
+    }
+
     /* 2. Welcome Title (H1) */
     h1 {
-        font-size: 1.6rem; 
-        margin-top: 12vh; /* Adjusted for smaller header */
+        font-size: 1.5rem; 
+        margin-top: 4vh; /* Reduced from 12vh */
         letter-spacing: 1px;
+        text-align: center;
     }
 
     /* 3. Navigation Pills - STRICT HORIZONTAL */

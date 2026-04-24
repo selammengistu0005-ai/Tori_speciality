@@ -670,30 +670,31 @@ input:invalid:focus {
 /* --- 2. Central Glass Chat Modal --- */
 #ai-chat-modal {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.9);
-    width: 420px;
-    height: 550px;
-    background: rgba(15, 15, 15, 0.7); /* Dark base for glass effect */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 15, 15, 0.7); 
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
-    border: 1px solid rgba(212, 175, 55, 0.3);
-    border-radius: 25px;
+    border: none;
+    border-radius: 0;
     z-index: 3000;
     display: flex;
     flex-direction: column;
     box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
     opacity: 0;
     pointer-events: none;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Slide-up transition */
+    transform: translateY(100%);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Open State */
 #ai-chat-modal.active {
     opacity: 1;
     pointer-events: auto;
-    transform: translate(-50%, -50%) scale(1);
+    transform: translateY(0);
 }
 
 /* --- 3. Chat Header & UI --- */
@@ -703,6 +704,10 @@ input:invalid:focus {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    /* Keeps content centered on wide screens */
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .doctor-info h4 {
@@ -716,8 +721,17 @@ input:invalid:focus {
     background: transparent;
     border: none;
     color: var(--gold-accent);
-    font-size: 1.5rem;
+    /* 1. Make it larger for full-screen scale */
+    font-size: 2.2rem; 
     cursor: pointer;
+    /* 2. Increase the touch target size */
+    padding: 5px 15px;
+    /* 3. Smooth pop effect */
+    transition: transform 0.3s ease;
+}
+
+#close-chat:hover {
+    transform: scale(1.2);
 }
 
 .chat-body {

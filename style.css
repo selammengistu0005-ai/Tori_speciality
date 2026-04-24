@@ -1086,6 +1086,16 @@ input:invalid:focus {
         overflow-wrap: break-word;
         display: block;
     }
+
+    /* 6. Full-Screen AI Portal for Mobile */
+    #ai-chat-modal {
+        width: 100vw !important;
+        height: 100vh !important;
+        border-radius: 0 !important; /* No rounded corners on mobile */
+        top: 0 !important;
+        left: 0 !important;
+        border: none !important;
+    }
 }
 
 @media (max-width: 480px) {

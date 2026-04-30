@@ -46,34 +46,41 @@ function typeWriter() {
 window.addEventListener('load', typeWriter);
 
 // --- Navigation & Frame Switching Logic ---
+// --- Optimized Navigation & Frame Switching Logic ---
 const pills = document.querySelectorAll('.nav-pill');
 const homeFrame = document.getElementById('home-frame');
 const aboutFrame = document.getElementById('about-frame');
-const bookFrame = document.getElementById('book-frame'); // New variable
+const bookFrame = document.getElementById('book-frame');
 
 pills.forEach(pill => {
     pill.addEventListener('click', function(e) {
         e.preventDefault();
 
-        // 1. Handle Pill UI (Solid gold switch)
+        // 1. Handle Pill UI
         document.querySelector('.nav-pill.active-pill')?.classList.remove('active-pill');
         this.classList.add('active-pill');
 
-        // 2. Hide all frames first to ensure a clean swap
+        // 2. Hide all frames
         [homeFrame, aboutFrame, bookFrame].forEach(frame => {
             if(frame) frame.style.display = 'none';
         });
 
-        // 3. Handle Frame Switching logic
+        // 3. Frame Switching & Typing Trigger
         const clickedText = this.textContent.trim().toLowerCase();
 
         if (clickedText.includes('about')) {
-            aboutFrame.style.display = 'block';
+            if(aboutFrame) aboutFrame.style.display = 'block';
+            // Start the About typing effect
+            setTimeout(() => startTyping(aboutContent), 300);
         } else if (clickedText.includes('book')) {
-            bookFrame.style.display = 'block';
+            if(bookFrame) bookFrame.style.display = 'block';
+            clearInterval(typingInterval); // Stop typing to save battery/RAM
         } else {
-            homeFrame.style.display = 'block';
+            if(homeFrame) homeFrame.style.display = 'block';
+            clearInterval(typingInterval);
         }
+        
+        // Always scroll to top so the glass header doesn't block content on load
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 });

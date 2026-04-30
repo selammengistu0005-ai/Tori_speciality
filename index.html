@@ -8,36 +8,37 @@
 </head>
 <body>
 
-    <header class="main-header">
-    <div class="logo-wrapper">
-        <img src="https://github.com/selammengistu0005-ai/Tori_speciality/blob/main/main_logo-removebg-preview.png?raw=true" 
-             alt="Tori Speciality Logo" 
-             class="extended-logo">
+    <div class="header-wrapper">
+        <header class="main-header">
+            <div class="logo-wrapper">
+                <img src="https://github.com/selammengistu0005-ai/Tori_speciality/blob/main/main_logo-removebg-preview.png?raw=true" 
+                     alt="Tori Speciality Logo" 
+                     class="extended-logo">
+            </div>
+            <nav class="pill-nav">
+                <a href="#" class="nav-pill active-pill">Home</a>
+                <a href="#" class="nav-pill">About</a>
+                <a href="#" class="nav-pill">Book an Appointment</a>
+            </nav>
+        </header>
+
+        <button id="theme-toggle" aria-label="Toggle Theme">
+            <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+        </button>
     </div>
-    <nav class="pill-nav">
-        <a href="#" class="nav-pill">Home</a>
-        <a href="#" class="nav-pill">About</a>
-        <a href="#" class="nav-pill">Book an Appointment</a>
-    </nav>
-</header>
-
- <button id="theme-toggle" aria-label="Toggle Theme">
-    <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-    </svg>
-
-    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="5"></circle>
-        <line x1="12" y1="1" x2="12" y2="3"></line>
-        <line x1="12" y1="21" x2="12" y2="23"></line>
-        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-        <line x1="1" y1="12" x2="3" y2="12"></line>
-        <line x1="21" y1="12" x2="23" y2="12"></line>
-        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-    </svg>
-</button>
 
 <div id="home-frame">
     <main>
@@ -173,27 +174,31 @@
     </div>
 </section>
 
-<section class="testimonials-section">
-    <h2 class="section-title">Patient Feedback</h2>
-    <div class="testimonials-container">
-        
-        <div class="testimonial-card">
-            <p class="feedback-text">"I visited Tori Speciality Dental Clinic today with my wife. We booked an urgent appointment, and they helped us immediately — we were seen right away at 12:00."</p>
-            <h4 class="patient-name">— Dallel Ahmed</h4>
-        </div>
+<!-- START of modified section -->
+<div id="feedback-wall-container">
+    <section class="testimonials-section">
+        <h2 class="section-title">Patient Feedback</h2>
+        <div class="testimonials-container">
+            
+            <div class="testimonial-card">
+                <p class="feedback-text">"I visited Tori Speciality Dental Clinic today with my wife. We booked an urgent appointment, and they helped us immediately — we were seen right away at 12:00."</p>
+                <h4 class="patient-name">— Dallel Ahmed</h4>
+            </div>
 
-        <div class="testimonial-card">
-            <p class="feedback-text">"I had some severe tooth pain while visiting Addis Ababa and decided to stop by Tori Dental — so glad I did! From the moment I walked in, the front desk receptionist was warm and welcoming, and the entire staff made me feel comfortable and cared for right away."</p>
-            <h4 class="patient-name">— Elzabeth Debebe</h4>
-        </div>
+            <div class="testimonial-card">
+                <p class="feedback-text">"I had some severe tooth pain while visiting Addis Ababa and decided to stop by Tori Dental — so glad I did! From the moment I walked in, the front desk receptionist was warm and welcoming, and the entire staff made me feel comfortable and cared for right away."</p>
+                <h4 class="patient-name">— Elzabeth Debebe</h4>
+            </div>
 
-        <div class="testimonial-card">
-            <p class="feedback-text">"I’ve always been a bit anxious about going to the dentist, but the team here made me feel completely at ease. From the moment I walked in, the staff was incredibly welcoming and professional. The dentist was gentle, patient, and took the time to explain every step of the procedure. I left feeling confident and pain-free. I Highly recommend!"</p>
-            <h4 class="patient-name">— Aman Hsy</h4>
-        </div>
+            <div class="testimonial-card">
+                <p class="feedback-text">"I’ve always been a bit anxious about going to the dentist, but the team here made me feel completely at ease. From the moment I walked in, the staff was incredibly welcoming and professional. The dentist was gentle, patient, and took the time to explain every step of the procedure. I left feeling confident and pain-free. I Highly recommend!"</p>
+                <h4 class="patient-name">— Aman Hsy</h4>
+            </div>
 
-    </div>
-</section>
+        </div>
+    </section>
+</div>
+<!-- END of modified section -->
 
     </main>
 

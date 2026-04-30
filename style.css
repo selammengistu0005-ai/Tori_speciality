@@ -4,11 +4,15 @@
     --text-color: #1a1a1a;
     --gold-accent: #d4af37;
     --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    --header-glass: rgba(255, 255, 255, 0.4); /* Whitish Transparent */
+    --header-border: rgba(255, 255, 255, 0.3);
 }
 
 [data-theme="dark"] {
     --bg-color: #000000; /* Pure black for that professional look */
     --text-color: #f5f5f5;
+    --header-glass: rgba(40, 40, 40, 0.5); /* Glassmorphic Grey */
+    --header-border: rgba(255, 255, 255, 0.1);
 }
 
 body {
@@ -45,6 +49,31 @@ h1::after {
     justify-content: center;
     align-items: center;
     background: transparent; /* Keeps the focus on the logo */
+}
+
+.header-wrapper {
+    /* Changed from sticky to absolute */
+    position: absolute; 
+    
+    /* Centering logic for absolute elements */
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    width: 95%;
+    z-index: 9999;
+    
+    /* Keep your beautiful glass styling */
+    border-radius: 20px; 
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    
+    /* Use your themed variables directly */
+    background: var(--header-glass);
+    border: 1px solid var(--header-border);
+    
+    /* Transition is fine to keep for theme switching */
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .logo-wrapper {
@@ -108,11 +137,11 @@ h1::after {
 
 /* --- ICON-ONLY TOGGLE FIX --- */
 #theme-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: transparent !important; /* Removes background */
-    border: none !important;             /* Removes circular border */
+    position: absolute; /* Changed from fixed */
+    top: 25px; /* Adjust to align with your logo */
+    right: 25px;
+    background: transparent !important;
+    border: none !important;
     cursor: pointer;
     z-index: 1000;
     padding: 0;
@@ -948,6 +977,69 @@ input:invalid:focus {
     100% { transform: scale(1); opacity: 1; }
 }
 
+#feedback-wall-container {
+    width: 100%;
+    position: relative;
+    padding: 80px 0; /* Increased padding for a more spacious feel */
+    margin-top: 50px;
+    
+    /* Updated Background Logic */
+    background-image: url('https://raw.githubusercontent.com/selammengistu0005-ai/Tori_speciality/main/Tori_main_logo.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    /* 1. Changed to 'cover' to stretch the image across the entire section */
+    background-size: cover; 
+    
+    /* 2. Added 'fixed' for a parallax effect (logo stays still as you scroll) */
+    background-attachment: fixed; 
+}
+
+/* Updated Overlay for better contrast */
+#feedback-wall-container::before {
+    content: "";
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    background: var(--bg-color); 
+    /* Lowered opacity slightly to 0.82 so the larger logo is visible but soft */
+    opacity: 0.82; 
+    z-index: 0;
+}
+
+/* Optimized for your Spark 10C (Mobile) */
+@media (max-width: 768px) {
+    #feedback-wall-container {
+        /* Mobile performance: 'scroll' is smoother than 'fixed' on mobile chips */
+        background-attachment: scroll; 
+        padding: 40px 10px;
+    }
+}
+
+/* Ensure the section content stays on top */
+.testimonials-section {
+    position: relative;
+    z-index: 1;
+}
+
+/* Keeping your glassmorphic cards */
+.testimonial-card {
+    background: var(--header-glass) !important;
+    backdrop-filter: blur(12px); /* Slightly increased blur for better legibility */
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--header-border);
+    border-radius: 20px;
+    padding: 25px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.testimonial-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
 /* --- 1. TABLET & SMALL LAPTOPS (Under 1024px) --- */
 @media (max-width: 1024px) {
     .qa-section, .testimonials-section {
@@ -961,7 +1053,7 @@ input:invalid:focus {
     #theme-toggle {
         top: 15px;
         right: 15px;
-        position: fixed; /* Stays in place during scroll */
+        position: absolute; /* Stays in place during scroll */
         z-index: 1000;
         padding: 8px;
     }
@@ -972,6 +1064,12 @@ input:invalid:focus {
     }
 
     /* --- New: Logo over Buttons Stack --- */
+
+    .header-wrapper {
+        padding-bottom: 10px; /* Slimmer for mobile screens */
+    }
+
+
     .main-header {
         display: flex;
         flex-direction: column !important; /* Stack vertically */
